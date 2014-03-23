@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="uAXhMX" name="SampleBrowser" projectType="guiapp" version="0.0.01"
+              bundleIdentifier="org.imekon.samplebrowser" includeBinaryInAppConfig="1"
+              jucerVersion="3.1.0">
+  <MAINGROUP id="alo8z5" name="SampleBrowser">
+    <GROUP id="{479C0AEC-C341-E294-674C-B537C15BE8EF}" name="Source">
+      <FILE id="huTRBG" name="DirectoryModel.cpp" compile="1" resource="0"
+            file="Source/DirectoryModel.cpp"/>
+      <FILE id="LaWhRi" name="DirectoryModel.h" compile="0" resource="0"
+            file="Source/DirectoryModel.h"/>
+      <FILE id="hi7phC" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="u4C3Xj" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="rFpJBL" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="UPOzvI" name="MainWindow.cpp" compile="1" resource="0" file="Source/MainWindow.cpp"/>
+      <FILE id="kVYOEm" name="MainWindow.h" compile="0" resource="0" file="Source/MainWindow.h"/>
+      <FILE id="XsGgWr" name="SampleFile.h" compile="0" resource="0" file="Source/SampleFile.h"/>
+      <FILE id="k8UcuL" name="ThumbnailComponent.cpp" compile="1" resource="0"
+            file="Source/ThumbnailComponent.cpp"/>
+      <FILE id="tk24c6" name="ThumbnailComponent.h" compile="0" resource="0"
+            file="Source/ThumbnailComponent.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2010 targetFolder="Builds/VisualStudio2010">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="SampleBrowser"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="SampleBrowser"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../toolkits/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2010>
+    <VS2013 targetFolder="Builds/VisualStudio2013">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="SampleBrowser"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="SampleBrowser"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../toolkits/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../toolkits/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2013>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_video" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>

@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2013
+Project("{499ED31D-3E35-B08A-A3D0-E3C7F1E7C79A}") = "SampleBrowser", "SampleBrowser.vcxproj", "{9AFDC23C-B1C3-4420-9EDA-22B1895814A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AFDC23C-B1C3-4420-9EDA-22B1895814A8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9AFDC23C-B1C3-4420-9EDA-22B1895814A8}.Debug|Win32.Build.0 = Debug|Win32
+		{9AFDC23C-B1C3-4420-9EDA-22B1895814A8}.Release|Win32.ActiveCfg = Release|Win32
+		{9AFDC23C-B1C3-4420-9EDA-22B1895814A8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
