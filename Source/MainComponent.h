@@ -17,7 +17,12 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent : public Component, public FileBrowserListener, public Slider::Listener, public ChangeListener
+class MainComponent : public Component, 
+	public Button::Listener,
+	public FileBrowserListener, 
+	public Slider::Listener, 
+	public ChangeListener,
+	public DirectoryModel::Listener
 {
 public:
     //==============================================================================
@@ -32,7 +37,12 @@ public:
 
 	void sliderValueChanged(Slider* slider) override;
 
+	void buttonClicked(Button *button) override;
+
 	void changeListenerCallback(ChangeBroadcaster *source) override;
+
+	void selectSample(SampleFile *sample) override;
+	void updatedSample(int row) override;
 
 private:
 	AudioDeviceManager deviceManager;
@@ -44,11 +54,17 @@ private:
 	FileTreeComponent treeList;
 	TableListBox fileList;
 	Slider zoomSlider;
+	TextButton playButton;
+	TextButton stopButton;
 	AudioSourcePlayer audioSourcePlayer;
 	AudioTransportSource transportSource;
 	ScopedPointer<AudioFormatReaderSource> currentAudioFileSource;
 
 	ScopedPointer<ThumbnailComponent> thumbnail;
+
+	void loadFileIntoTransport(const File &file);
+	void playSample();
+	void stopSample();
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

@@ -8,14 +8,17 @@
 
 #include "MainComponent.h"
 
-
 //==============================================================================
 MainComponent::MainComponent() : 
 	thread("audio preview thread"),
 	directoryList(nullptr, thread), 
-	treeList(directoryList)
+	treeList(directoryList),
+	playButton("Play"),
+	stopButton("Stop")
 {
 	deviceManager.initialise(2, 2, nullptr, true);
+	deviceManager.addAudioCallback(&audioSourcePlayer);
+	audioSourcePlayer.setSource(&transportSource);
 
 	directoryList.setDirectory(File::getSpecialLocation(File::userHomeDirectory), true, false);
 	thread.startThread(3);
@@ -23,6 +26,7 @@ MainComponent::MainComponent() :
 	TableHeaderComponent *header = new TableHeaderComponent();
 	header->addColumn("Name", DirectoryModel::name, 120);
 	header->addColumn("Sample Rate", DirectoryModel::sampleRate, 100);
+	header->addColumn("Channels", DirectoryModel::channels, 90);
 	header->addColumn("Bits", DirectoryModel::bits, 70);
 	header->addColumn("Size", DirectoryModel::size, 100);
 	fileList.setHeader(header);
@@ -42,11 +46,24 @@ MainComponent::MainComponent() :
 	thumbnail = new ThumbnailComponent(formatManager, transportSource, zoomSlider);
 	addAndMakeVisible(thumbnail);
 
+	model.addListener(this);
+
+	addAndMakeVisible(playButton);
+	addAndMakeVisible(stopButton);
+
+	playButton.addListener(this);
+	stopButton.addListener(this);
+
     setSize (800, 600);
 }
 
 MainComponent::~MainComponent()
 {
+	deviceManager.removeAudioCallback(&audioSourcePlayer);
+	audioSourcePlayer.setSource(nullptr);
+	transportSource.stop();
+	transportSource.setSource(nullptr);
+	currentAudioFileSource = nullptr;
 	treeList.removeListener(this);
 }
 
@@ -58,7 +75,9 @@ void MainComponent::resized()
 	treeList.setBoundsRelative(0.01f, 0.01f, 0.28f, 0.98f);
 	fileList.setBoundsRelative(0.30f, 0.01f, 0.68f, 0.78f);
 	thumbnail->setBoundsRelative(0.3f, 0.80f, 0.68f, 0.12f);
-	zoomSlider.setBoundsRelative(0.3f, 0.9f, 0.2f, 0.1f);
+	zoomSlider.setBoundsRelative(0.3f, 0.93f, 0.2f, 0.05f);
+	playButton.setBoundsRelative(0.6f, 0.93f, 0.15f, 0.05f);
+	stopButton.setBoundsRelative(0.76f, 0.93f, 0.15f, 0.05f);
 }
 
 void MainComponent::selectionChanged()
@@ -75,6 +94,8 @@ void MainComponent::selectionChanged()
 		{
 			model.addSample(files[i]);
 		}
+
+		model.startReadingFiles();
 	}
 	fileList.updateContent();
 	fileList.repaint();
@@ -110,3 +131,62 @@ void MainComponent::sliderValueChanged(Slider* slider)
 		thumbnail->setZoomFactor(zoomSlider.getValue());
 	}
 }
+
+void MainComponent::selectSample(SampleFile *sample)
+{
+	if (sample)
+	{
+		File file(sample->getFilename());
+		loadFileIntoTransport(file);
+		thumbnail->setFile(file);
+	}
+}
+
+void MainComponent::updatedSample(int row)
+{
+	fileList.repaintRow(row);
+}
+
+void MainComponent::loadFileIntoTransport(const File &file)
+{
+	transportSource.stop();
+	transportSource.setSource(nullptr);
+	currentAudioFileSource = nullptr;
+
+	AudioFormatReader *reader = formatManager.createReaderFor(file);
+	if (reader)
+	{
+		currentAudioFileSource = new AudioFormatReaderSource(reader, true);
+		transportSource.setSource(currentAudioFileSource, 32768, &thread, reader->sampleRate);
+	}
+}
+
+void MainComponent::buttonClicked(Button *button)
+{
+	if (button == &playButton)
+	{
+		playSample();
+	}
+	else if (button == &stopButton)
+	{
+		stopSample();
+	}
+}
+
+void MainComponent::playSample()
+{
+	if (!transportSource.isPlaying())
+	{
+		transportSource.setPosition(0);
+		transportSource.start();
+	}
+}
+
+void MainComponent::stopSample()
+{
+	if (transportSource.isPlaying())
+	{
+		transportSource.stop();
+	}
+}
+

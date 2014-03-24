@@ -52,6 +52,8 @@ private:
 	void scrollBarMoved(ScrollBar* scrollBarThatHasMoved, double newRangeStart) override;
 	void timerCallback() override;
 	void updateCursorPosition();
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ThumbnailComponent)
 };
 
 #endif // _THUMBNAILCOMPONENT_H

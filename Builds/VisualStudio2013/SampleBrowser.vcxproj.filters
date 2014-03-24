@@ -5,6 +5,9 @@
     <Filter Include="SampleBrowser">
       <UniqueIdentifier>{5FEC8363-5104-E486-EBBD-4E2A5F7B148E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SampleBrowser\resources">
+      <UniqueIdentifier>{6AA1B6B0-D1CC-468B-8D7F-7994306C5EFD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SampleBrowser\Source">
       <UniqueIdentifier>{0503723F-7E8C-C3F3-C1F4-77A454501787}</UniqueIdentifier>
     </Filter>
@@ -314,6 +317,9 @@
       <Filter>SampleBrowser\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MainWindow.cpp">
+      <Filter>SampleBrowser\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SampleFile.cpp">
       <Filter>SampleBrowser\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ThumbnailComponent.cpp">
@@ -1485,6 +1491,9 @@
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_video\native\juce_win32_QuickTimeMovieComponent.cpp">
       <Filter>Juce Modules\juce_video\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>Juce Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_audio_basics.cpp">
       <Filter>Juce Library Code</Filter>
@@ -2877,11 +2886,17 @@
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\resources\speaker.png">
+      <Filter>SampleBrowser\resources</Filter>
+    </None>
     <None Include="..\..\..\..\toolkits\JUCE\modules\juce_audio_basics\juce_module_info">
       <Filter>Juce Modules\juce_audio_basics</Filter>
     </None>
@@ -2923,6 +2938,9 @@
     </None>
     <None Include="..\..\..\..\toolkits\JUCE\modules\juce_video\juce_module_info">
       <Filter>Juce Modules\juce_video</Filter>
+    </None>
+    <None Include=".\icon.ico">
+      <Filter>Juce Library Code</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

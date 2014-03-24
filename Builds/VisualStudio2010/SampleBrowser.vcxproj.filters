@@ -316,6 +316,9 @@
     <ClCompile Include="..\..\Source\MainWindow.cpp">
       <Filter>SampleBrowser\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SampleFile.cpp">
+      <Filter>SampleBrowser\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ThumbnailComponent.cpp">
       <Filter>SampleBrowser\Source</Filter>
     </ClCompile>

@@ -3,27 +3,30 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+class DirectoryModel;
+
 class SampleFile
 {
 public:
-	SampleFile(StringRef shortName, StringRef fileName, int sampleRate, int bits, int size)
-	{
-		this->shortName = shortName.text;
-		this->fileName = fileName.text;
-		this->sampleRate = sampleRate;
-		this->bits = bits;
-		this->size = size;
-	}
+	SampleFile(DirectoryModel *model, int row, StringRef shortName, StringRef fileName);
+	virtual ~SampleFile() { }
 
+	String getFilename() const { return fileName; }
 	String getName() const { return shortName; }
 	int getSampleRate() const { return sampleRate; }
+	int getChannels() const { return channels; }
 	int getBits() const { return bits; }
 	int getSize() const { return size; }
 
+	void readContents();
+
 private:
+	DirectoryModel *model;
+	int row;
 	String shortName;
 	String fileName;
 	int sampleRate;
+	int channels;
 	int bits;
 	int size;
 

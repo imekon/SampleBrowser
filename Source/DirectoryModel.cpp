@@ -1,6 +1,6 @@
 #include "DirectoryModel.h"
 
-DirectoryModel::DirectoryModel()
+DirectoryModel::DirectoryModel() : Thread("sample file reader")
 {
 
 }
@@ -31,7 +31,7 @@ void DirectoryModel::paintRowBackground(Graphics &g, int row, int width, int hei
 	g.fillRect(0, 0, width, height);
 }
 
-void DirectoryModel::paintCell(Graphics &g, int rowNumber, int columnId, int width, int height, bool selected)
+void DirectoryModel::paintCell(Graphics &g, int rowNumber, int columnId, int width, int height, bool)
 {
 	SampleFile *sample = samples[rowNumber];
 
@@ -47,6 +47,10 @@ void DirectoryModel::paintCell(Graphics &g, int rowNumber, int columnId, int wid
 		text = String(sample->getSampleRate());
 		break;
 
+	case channels:
+		text = String(sample->getChannels());
+		break;
+
 	case bits:
 		text = String(sample->getBits());
 		break;
@@ -57,16 +61,51 @@ void DirectoryModel::paintCell(Graphics &g, int rowNumber, int columnId, int wid
 	}
 
 	g.setColour(Colours::black);
-	g.drawText(text, 2, 2, width - 2, height - 2, Justification::centred, true);
+	g.drawText(text, 2, 2, width - 2, height - 2, Justification::right, true);
 }
 
 void DirectoryModel::clear()
 {
+	stopThread(300);
 	samples.clear();
 }
 
 void DirectoryModel::addSample(const File &file)
 {
-	SampleFile *sample = new SampleFile(file.getFileNameWithoutExtension(), file.getFullPathName(), 0, 0, 0);
+	int row = samples.size();
+	SampleFile *sample = new SampleFile(this, row, file.getFileNameWithoutExtension(), file.getFullPathName());
 	samples.add(sample);
+}
+
+void DirectoryModel::startReadingFiles()
+{
+	startThread(3);
+}
+
+void DirectoryModel::run()
+{
+	for (int i = 0; i < samples.size(); i++)
+	{
+		if (threadShouldExit())
+			return;
+
+		SampleFile *sample = samples[i];
+		sample->readContents();
+	}
+}
+
+void DirectoryModel::notifyListeners(int row)
+{
+	for (int i = 0; i < listeners.size(); i++)
+	{
+		listeners[i]->updatedSample(row);
+	}
+}
+
+void DirectoryModel::selectedRowsChanged(int row)
+{
+	for (int i = 0; i < listeners.size(); i++)
+	{
+		listeners[i]->selectSample(row != -1 ? samples[row] : nullptr);
+	}
 }
